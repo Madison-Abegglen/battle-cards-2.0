@@ -1,16 +1,15 @@
 <template>
-  <div class="main">
-    <div class="main-2">
+  <div class="char-select">
+    <div class="char-select-2">
       <div class="container-fluid">
         <div class="row main-r">
           <div class="col-12 title-p">
             <h1 class="game-title">B C | Zombies Edition</h1>
             <div class="divider"></div>
           </div>
-          <div class="col-6 offset-3 start-p">
-            <router-link class="char-select" to="charSelect">
-              <h1 class="game-title-2">Start Game</h1>
-            </router-link>
+
+          <div class="col-6 offset-3 subtitle-p">
+            <h1 style="color: white">char select goes here</h1>
           </div>
         </div>
       </div>
@@ -19,17 +18,14 @@
 </template>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
-
 export default {
-  name: "main",
+  name: "charSelect",
   components: {}
 };
 </script>
 
 <style scoped>
-.main {
+.char-select {
   background-image: url("https://media.playstation.com/is/image/SCEA/call-of-duty-black-ops-4-background-art-01-ps4-u-21jun18?$native_nt$");
   height: 100vh;
   background-position: center;
@@ -38,7 +34,7 @@ export default {
   position: relative;
 }
 
-.main-2 {
+.char-select-2 {
   background-image: url("https://thumbs.gfycat.com/GenerousSophisticatedCoelacanth-size_restricted.gif");
   opacity: 0.5;
   height: 100vh;

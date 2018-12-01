@@ -1,16 +1,57 @@
-.main {
-  background-image: url("https://media.playstation.com/is/image/SCEA/call-of-duty-black-ops-4-background-art-01-ps4-u-21jun18?$native_nt$");
+.bred {
+  border: solid red;
+}
+
+.divider {
+  height: 2px;
+  width: 80%;
+  background-color: rgb(255, 255, 255, .7);
+}
+
+.main-r {
   height: 100vh;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
+}
+
+.title-p {
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.start-p {
+  height: 30vh;
+  background-color: rgba(31, 31, 31, 0.6);
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+.start-p a{
+  text-decoration: none;
+}
+
+.start-p:hover {
+  box-shadow: 0 0 3px 3px rgba(95, 95, 95, 0.6);
 }
 
 .game-title {
   text-transform: uppercase;
   font-weight: bolder;
-  color: rgba(255, 53, 53, 0.6);
+  font-size: 4rem;
+  color: rgb(255, 27, 27);
   text-shadow: 0 0 2px #000000;
-  font-family: 'Abel', sans-serif;
+  font-family: "Abel", sans-serif;
+}
+
+.game-title-2 {
+  text-transform: uppercase;
+  font-weight: bolder;
+  font-size: 3rem;
+  color: rgb(255, 255, 255);
+  text-shadow: 0 0 2px #000000;
+  font-family: "Abel", sans-serif;
 }
