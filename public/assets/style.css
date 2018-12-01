@@ -1,0 +1,16 @@
+.main {
+  background-image: url("https://media.playstation.com/is/image/SCEA/call-of-duty-black-ops-4-background-art-01-ps4-u-21jun18?$native_nt$");
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.game-title {
+  text-transform: uppercase;
+  font-weight: bolder;
+  color: rgba(255, 53, 53, 0.6);
+  text-shadow: 0 0 2px #000000;
+  font-family: 'Abel', sans-serif;
+}
