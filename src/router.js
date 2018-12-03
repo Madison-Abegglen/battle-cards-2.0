@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Main from './views/Main.vue'
 import CharSelect from './views/CharSelect.vue'
+import Game from './views/Game.vue'
 
 Vue.use(Router)
 
@@ -16,6 +17,11 @@ export default new Router({
       path: '/charSelect',
       name: 'charSelect',
       component: CharSelect
+    },
+    {
+      path: '/game',
+      name: 'game',
+      component: Game
     }
   ]
 })

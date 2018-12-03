@@ -1,26 +1,26 @@
 <template>
-  <div class="char-select">
-    <div class="char-select-2">
+  <div class="game">
+    <div class="game-2">
       <div class="container-fluid">
-        <gameSelect></gameSelect>
+        <activeGame></activeGame>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import gameSelect from "@/components/GameSelect.vue";
+import activeGame from "@/components/ActiveGame.vue";
 
 export default {
-  name: "charSelect",
+  name: "Game",
   components: {
-    gameSelect
+    activeGame
   }
 };
 </script>
 
 <style scoped>
-.char-select {
+.game {
   background-image: url("https://media.playstation.com/is/image/SCEA/call-of-duty-black-ops-4-background-art-01-ps4-u-21jun18?$native_nt$");
   height: 100vh;
   background-position: center;
@@ -29,7 +29,7 @@ export default {
   position: relative;
 }
 
-.char-select-2 {
+.game-2 {
   background-image: url("https://thumbs.gfycat.com/GenerousSophisticatedCoelacanth-size_restricted.gif");
   opacity: 0.8;
   height: 100vh;
@@ -39,4 +39,3 @@ export default {
   position: relative;
 }
 </style>
-

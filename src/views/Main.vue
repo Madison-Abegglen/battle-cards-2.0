@@ -2,17 +2,7 @@
   <div class="main">
     <div class="main-2">
       <div class="container-fluid">
-        <div class="row main-r">
-          <div class="col-12 title-p">
-            <h1 class="game-title">B C | Zombies Edition</h1>
-            <div class="divider"></div>
-          </div>
-          <div class="col-6 offset-3 start-p">
-            <router-link class="char-select" to="charSelect">
-              <h1 class="game-title-2">Start Game</h1>
-            </router-link>
-          </div>
-        </div>
+        <startGame></startGame>
       </div>
     </div>
   </div>
@@ -21,10 +11,13 @@
 <script>
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
+import startGame from "@/components/StartGame.vue";
 
 export default {
   name: "main",
-  components: {}
+  components: {
+    startGame
+  }
 };
 </script>
 
