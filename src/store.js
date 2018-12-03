@@ -21,11 +21,10 @@ export default new Vuex.Store({
   },
   actions: {
     getGame({ commit, dispatch }, gameId) {
-      let game = this.state.game;
-      api.get('/:id' + game._id)
+      api.get('/' + gameId)
         .then(res => {
-          console.log(res.data)
-          commit('setGame', res.data)
+          console.log("Getting Game:", res.data.data)
+          commit('setGame', res.data.data)
         })
         .catch(err => {
           console.log('Error:', err)
@@ -34,13 +33,20 @@ export default new Vuex.Store({
     createGame({ commit, dispatch }, game) {
       api.post('', game)
         .then(res => {
-          console.log(res.data)
-          commit('setGame', res.data)
-          router.push({ name: 'game' })
+          console.log("Creating Game:", res.data.data)
+          commit('setGame', res.data.data)
+          router.push({ name: 'game', params: { gameId: res.data.id } })
         })
         .catch(err => {
           console.log('Error:', err)
         })
     },
+    attack({ commit, dispatch }, payload) {
+      api.put('/' + payload.gameId, payload.attackObject)
+        .then(res => {
+          console.log("We\'ve attacked:", res.data)
+          dispatch('getGame', payload.gameId)
+        })
+    }
   }
 })

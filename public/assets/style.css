@@ -2,6 +2,13 @@
   border: solid red;
 }
 
+/* .navbar {
+  height: 10vh;
+  z-index: 2;
+  position: fixed;
+  background-color: rgb(87, 87, 87);
+} */
+
 .divider {
   height: 2px;
   width: 80%;

@@ -19,7 +19,7 @@ export default new Router({
       component: CharSelect
     },
     {
-      path: '/game',
+      path: '/game/:gameId',
       name: 'game',
       component: Game
     }
