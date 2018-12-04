@@ -1,66 +1,80 @@
 <template>
-  <div class="main-r" v-if="game.players">
-    <div class="row attack">
-      <div
-        class="col-4 offset-4 attack-btn"
-        v-if="attackObject.playerId && attackObject.opponentId"
-      >
-        <button class="c-btn-2" @click="attack">ATTACK</button>
+  <div class="main-r">
+    <div v-if="game.players && !game.winner">
+      <div class="row attack">
+        <div
+          class="col-4 offset-4 attack-btn"
+          v-if="attackObject.playerId && attackObject.opponentId"
+        >
+          <button class="c-btn-2" @click="attack">ATTACK</button>
+        </div>
+      </div>
+      <div class="row title" v-for="(player, index) in game.players" :key="player.id">
+        <div class="col-12">
+          <h1>{{player.name}}</h1>
+          <h2>Remaining Cards: {{player.remainingCards}} | Dead Cards: {{player.deadCards.length}}</h2>
+        </div>
+        <!-- <h1>{{player.hand}}</h1> -->
+        <div id="highlight" class="col-2" v-for="card in player.hand" :key="card.id">
+          <div class="card" v-if="index == 0">
+            <img class="c-img" :src="card.img">
+            <p class="c-name">{{card.name}}</p>
+            <div class="stats">
+              <p class="c-text mg-1">
+                <i class="fas fa-plus"></i>
+                {{card.health}}
+              </p>
+              <p class="c-text mg-1">
+                <i class="fas fa-shield-alt"></i>
+                {{card.defense}}
+              </p>
+              <p class="c-text mg-1">
+                <i class="fas fa-fist-raised"></i>
+                {{card.attack}}
+              </p>
+            </div>
+            <b-button class="c-btn" @click="setPlayerCard(card.id, player.id)">Select</b-button>
+          </div>
+
+          <div id="highlight" class="card" v-else-if="index == 1 && card.visible == true">
+            <img class="c-img" :src="card.img">
+            <p class="c-name">{{card.name}}</p>
+            <div class="stats">
+              <p class="c-text mg-1">
+                <i class="fas fa-plus"></i>
+                {{card.health}}
+              </p>
+              <p class="c-text mg-1">
+                <i class="fas fa-shield-alt"></i>
+                {{card.defense}}
+              </p>
+              <p class="c-text mg-1">
+                <i class="fas fa-fist-raised"></i>
+                {{card.attack}}
+              </p>
+            </div>
+            <b-button class="c-btn" @click="setOpponentCard(card.id, player.id)">Select</b-button>
+          </div>
+
+          <div id="highlight" class="card" @click="setOpponentCard(card.id, player.id)" v-else>
+            <img
+              class="c-img-2"
+              src="https://ak0.picdn.net/shutterstock/videos/12188810/thumb/9.jpg"
+            >
+          </div>
+        </div>
+        <div class="divider"></div>
       </div>
     </div>
-    <div class="row title" v-for="(player, index) in game.players" :key="player.id">
-      <div class="divider"></div>
-      <div class="col-12">
-        <h1>{{player.name}}</h1>
-        <h2>Remaining Cards: {{player.remainingCards}}</h2>
+    <div class="row" v-else-if="game.winner">
+      <div class="col-12 results-title">
+        <h1 class="results-text-1">Game Results:</h1>
       </div>
-      <!-- <h1>{{player.hand}}</h1> -->
-      <div id="highlight" class="col-2" v-for="card in player.hand" :key="card.id">
-        <div class="card" v-if="index == 0">
-          <img class="c-img" :src="card.img">
-          <p class="c-name">{{card.name}}</p>
-          <div class="stats">
-            <p class="c-text mg-1">
-              <i class="fas fa-plus"></i>
-              {{card.health}}
-            </p>
-            <p class="c-text mg-1">
-              <i class="fas fa-shield-alt"></i>
-              {{card.defense}}
-            </p>
-            <p class="c-text mg-1">
-              <i class="fas fa-fist-raised"></i>
-              {{card.attack}}
-            </p>
-          </div>
-          <b-button class="c-btn" @click="setPlayerCard(card.id, player.id)">Select</b-button>
-        </div>
-
-        <div id="highlight" class="card" v-else-if="index == 1 && card.visible == true">
-          <img class="c-img" :src="card.img">
-          <p class="c-name">{{card.name}}</p>
-          <div class="stats">
-            <p class="c-text mg-1">
-              <i class="fas fa-plus"></i>
-              {{card.health}}
-            </p>
-            <p class="c-text mg-1">
-              <i class="fas fa-shield-alt"></i>
-              {{card.defense}}
-            </p>
-            <p class="c-text mg-1">
-              <i class="fas fa-fist-raised"></i>
-              {{card.attack}}
-            </p>
-          </div>
-          <b-button class="c-btn" @click="setOpponentCard(card.id, player.id)">Select</b-button>
-        </div>
-
-        <div id="highlight" class="card" @click="setOpponentCard(card.id, player.id)" v-else>
-          <img class="c-img-2" src="https://ak0.picdn.net/shutterstock/videos/12188810/thumb/9.jpg">
-        </div>
+      <div class="col-12 results">
+        <h1 class="results-text-2">Winner | {{game.winner.name}}</h1>
+        <div class="divider" style="margin: 2rem;"></div>
+        <button>play again?</button>
       </div>
-      <div class="divider"></div>
     </div>
   </div>
 </template>
@@ -105,16 +119,41 @@ export default {
         attackObject: this.attackObject,
         gameId: this.$route.params.gameId
       });
-      this.attackObject.playerId = "";
-      this.attackObject.playerCardId = "";
-      this.attackObject.opponentId = "";
-      this.attackObject.opponentCardId = "";
     }
   }
 };
 </script>
 
 <style scoped>
+.results-title {
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.results {
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.results-text-1 {
+  color: white;
+  font-family: "Abel", sans-serif;
+  text-transform: uppercase;
+  font-weight: bolder;
+  letter-spacing: 4px;
+}
+.results-text-2 {
+  color: white;
+  font-family: "Abel", sans-serif;
+  text-transform: uppercase;
+  font-weight: bolder;
+  letter-spacing: 4px;
+  font-size: 4rem;
+}
 .attack {
   height: 5vh;
 }
@@ -143,7 +182,7 @@ export default {
   background-color: rgb(173, 173, 173);
 }
 .c-img {
-  height: 10vh;
+  height: 15vh;
   width: 100%;
 }
 .c-img-2 {
