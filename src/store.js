@@ -47,6 +47,10 @@ export default new Vuex.Store({
           console.log("We\'ve attacked:", res.data)
           dispatch('getGame', payload.gameId)
         })
+    },
+    startOver({ commit }, game) {
+      commit('setGame', game)
+      router.push({ name: 'main' })
     }
   }
 })

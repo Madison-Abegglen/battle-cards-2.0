@@ -73,7 +73,7 @@
       <div class="col-12 results">
         <h1 class="results-text-2">Winner | {{game.winner.name}}</h1>
         <div class="divider" style="margin: 2rem;"></div>
-        <button>play again?</button>
+        <button class="btn btn-secondary" @click="startOver()">play again?</button>
       </div>
     </div>
   </div>
@@ -119,6 +119,10 @@ export default {
         attackObject: this.attackObject,
         gameId: this.$route.params.gameId
       });
+    },
+    startOver() {
+      let game = {};
+      this.$store.dispatch("startOver", game);
     }
   }
 };
